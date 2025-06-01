@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Table from "./components/Table";
+import Form from "./components/Form";
+import { useState } from "react";
 
-function App() {
+const App: React.FC = () => {
+  const [reload, setReload] = useState(0);
+
+  const handleSuccess = () => {
+    setReload((prev) => prev + 1); // триггер перерисовки таблицы
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Table reload={reload} />
+      <Form onSuccess={handleSuccess} />
+    </>
   );
-}
+};
 
 export default App;
